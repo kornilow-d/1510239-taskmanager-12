@@ -1,20 +1,22 @@
-"use strict";
+'use strict';
 
-"use strict";
+// Methonds
+const render = (container, template, place) => {
+	container.insertAdjacentHTML(place, template);
+};
 
-const TASK_COUNT = 3;
-
+// Templates
 const createSiteMenuTemplate = () => {
-  return `<section class="control__btn-wrap">
+	return `<section class="control__btn-wrap">
       <input
         type="radio"
         name="control"
         id="control__new-task"
         class="control__input visually-hidden"
       />
-      <label for="control__new-task" class="control__label control__label--new-task"
-        >+ ADD NEW TASK</label
-      >
+      <label for="control__new-task" class="control__label control__label--new-task">
+        + ADD NEW TASK
+      </label>
       <input
         type="radio"
         name="control"
@@ -29,14 +31,14 @@ const createSiteMenuTemplate = () => {
         id="control__statistic"
         class="control__input visually-hidden"
       />
-      <label for="control__statistic" class="control__label"
-        >STATISTICS</label
-      >
+      <label for="control__statistic" class="control__label">
+        STATISTICS
+      </label>
     </section>`;
 };
 
 const createFilterTemplate = () => {
-  return `<section class="main__filter filter container">
+	return `<section class="main__filter filter container">
       <input
         type="radio"
         id="filter__all"
@@ -45,8 +47,8 @@ const createFilterTemplate = () => {
         checked
       />
       <label for="filter__all" class="filter__label">
-        All <span class="filter__all-count">13</span></label
-      >
+        All <span class="filter__all-count">13</span>
+      </label>
       <input
         type="radio"
         id="filter__overdue"
@@ -54,9 +56,9 @@ const createFilterTemplate = () => {
         name="filter"
         disabled
       />
-      <label for="filter__overdue" class="filter__label"
-        >Overdue <span class="filter__overdue-count">0</span></label
-      >
+      <label for="filter__overdue" class="filter__label">
+        Overdue <span class="filter__overdue-count">0</span>
+      </label>
       <input
         type="radio"
         id="filter__today"
@@ -64,41 +66,41 @@ const createFilterTemplate = () => {
         name="filter"
         disabled
       />
-      <label for="filter__today" class="filter__label"
-        >Today <span class="filter__today-count">0</span></label
-      >
+      <label for="filter__today" class="filter__label">
+        Today <span class="filter__today-count">0</span>
+      </label>
       <input
         type="radio"
         id="filter__favorites"
         class="filter__input visually-hidden"
         name="filter"
       />
-      <label for="filter__favorites" class="filter__label"
-        >Favorites <span class="filter__favorites-count">1</span></label
-      >
+      <label for="filter__favorites" class="filter__label">
+        Favorites <span class="filter__favorites-count">1</span>
+      </label>
       <input
         type="radio"
         id="filter__repeating"
         class="filter__input visually-hidden"
         name="filter"
       />
-      <label for="filter__repeating" class="filter__label"
-        >Repeating <span class="filter__repeating-count">1</span></label
-      >
+      <label for="filter__repeating" class="filter__label">
+        Repeating <span class="filter__repeating-count">1</span>
+      </label>
       <input
         type="radio"
         id="filter__archive"
         class="filter__input visually-hidden"
         name="filter"
       />
-      <label for="filter__archive" class="filter__label"
-        >Archive <span class="filter__archive-count">115</span></label
-      >
+      <label for="filter__archive" class="filter__label">
+        Archive <span class="filter__archive-count">115</span>
+      </label>
     </section>`;
 };
 
 const createBoardTemplate = () => {
-  return `<section class="board container">
+	return `<section class="board container">
       <div class="board__filter-list">
         <a href="#" class="board__filter">SORT BY DEFAULT</a>
         <a href="#" class="board__filter">SORT BY DATE up</a>
@@ -109,7 +111,7 @@ const createBoardTemplate = () => {
 };
 
 const createTaskTemplate = () => {
-  return `<article class="card card--black">
+	return `<article class="card card--black">
       <div class="card__form">
         <div class="card__inner">
           <div class="card__control">
@@ -121,8 +123,7 @@ const createTaskTemplate = () => {
             </button>
             <button
               type="button"
-              class="card__btn card__btn--favorites"
-            >
+              class="card__btn card__btn--favorites">
               favorites
             </button>
           </div>
@@ -151,7 +152,7 @@ const createTaskTemplate = () => {
 };
 
 const createTaskEditTemplate = () => {
-  return `<article class="card card--edit card--yellow card--repeat">
+	return `<article class="card card--edit card--yellow card--repeat">
       <form class="card__form" method="get">
         <div class="card__inner">
           <div class="card__color-bar">
@@ -164,8 +165,9 @@ const createTaskEditTemplate = () => {
               <textarea
                 class="card__text"
                 placeholder="Start typing your text here..."
-                name="text"
-              >This is example of task edit. You can set date and chose repeating days and color.</textarea>
+                name="text">
+                This is example of task edit. You can set date and chose repeating days and color.
+              </textarea>
             </label>
           </div>
           <div class="card__settings">
@@ -197,9 +199,9 @@ const createTaskEditTemplate = () => {
                       name="repeat"
                       value="mo"
                     />
-                    <label class="card__repeat-day" for="repeat-mo-4"
-                      >mo</label
-                    >
+                    <label class="card__repeat-day" for="repeat-mo-4">
+                      mo
+                    </label>
                     <input
                       class="visually-hidden card__repeat-day-input"
                       type="checkbox"
@@ -208,9 +210,9 @@ const createTaskEditTemplate = () => {
                       value="tu"
                       checked
                     />
-                    <label class="card__repeat-day" for="repeat-tu-4"
-                      >tu</label
-                    >
+                    <label class="card__repeat-day" for="repeat-tu-4">
+                      tu
+                    </label>
                     <input
                       class="visually-hidden card__repeat-day-input"
                       type="checkbox"
@@ -218,9 +220,9 @@ const createTaskEditTemplate = () => {
                       name="repeat"
                       value="we"
                     />
-                    <label class="card__repeat-day" for="repeat-we-4"
-                      >we</label
-                    >
+                    <label class="card__repeat-day" for="repeat-we-4">
+                      we
+                    </label>
                     <input
                       class="visually-hidden card__repeat-day-input"
                       type="checkbox"
@@ -228,9 +230,9 @@ const createTaskEditTemplate = () => {
                       name="repeat"
                       value="th"
                     />
-                    <label class="card__repeat-day" for="repeat-th-4"
-                      >th</label
-                    >
+                    <label class="card__repeat-day" for="repeat-th-4">
+                      th
+                    </label>
                     <input
                       class="visually-hidden card__repeat-day-input"
                       type="checkbox"
@@ -239,9 +241,9 @@ const createTaskEditTemplate = () => {
                       value="fr"
                       checked
                     />
-                    <label class="card__repeat-day" for="repeat-fr-4"
-                      >fr</label
-                    >
+                    <label class="card__repeat-day" for="repeat-fr-4">
+                      fr
+                    </label>
                     <input
                       class="visually-hidden card__repeat-day-input"
                       type="checkbox"
@@ -249,9 +251,9 @@ const createTaskEditTemplate = () => {
                       value="sa"
                       id="repeat-sa-4"
                     />
-                    <label class="card__repeat-day" for="repeat-sa-4"
-                      >sa</label
-                    >
+                    <label class="card__repeat-day" for="repeat-sa-4">
+                      sa
+                    </label>
                     <input
                       class="visually-hidden card__repeat-day-input"
                       type="checkbox"
@@ -260,9 +262,9 @@ const createTaskEditTemplate = () => {
                       value="su"
                       checked
                     />
-                    <label class="card__repeat-day" for="repeat-su-4"
-                      >su</label
-                    >
+                    <label class="card__repeat-day" for="repeat-su-4">
+                      su
+                    </label>
                   </div>
                 </fieldset>
               </div>
@@ -344,27 +346,26 @@ const createTaskEditTemplate = () => {
 };
 
 const createLoadMoreButtonTemplate = () => {
-  return `<button class="load-more" type="button">load more</button>`;
+	return `<button class="load-more" type="button">load more</button>`;
 };
 
-const render = (container, template, place) => {
-  container.insertAdjacentHTML(place, template);
-};
-
+// Main Control Elements
 const siteMainElement = document.querySelector(`.main`);
 const siteHeaderElement = siteMainElement.querySelector(`.main__control`);
-
 render(siteHeaderElement, createSiteMenuTemplate(), `beforeend`);
 render(siteMainElement, createFilterTemplate(), `beforeend`);
 render(siteMainElement, createBoardTemplate(), `beforeend`);
 
+// Board Elements
 const boardElement = siteMainElement.querySelector(`.board`);
 const taskListElement = boardElement.querySelector(`.board__tasks`);
-
 render(taskListElement, createTaskEditTemplate(), `beforeend`);
 
+// Tasks
+const TASK_COUNT = 3;
 for (let i = 0; i < TASK_COUNT; i++) {
-  render(taskListElement, createTaskTemplate(), `beforeend`);
+	render(taskListElement, createTaskTemplate(), `beforeend`);
 }
 
+// Other Elements
 render(boardElement, createLoadMoreButtonTemplate(), `beforeend`);
