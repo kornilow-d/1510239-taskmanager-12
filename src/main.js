@@ -2,12 +2,12 @@
 
 // Methonds
 const render = (container, template, place) => {
-	container.insertAdjacentHTML(place, template);
+    container.insertAdjacentHTML(place, template);
 };
 
 // Templates
 const createSiteMenuTemplate = () => {
-	return `<section class="control__btn-wrap">
+    return `<section class="control__btn-wrap">
       <input
         type="radio"
         name="control"
@@ -38,7 +38,7 @@ const createSiteMenuTemplate = () => {
 };
 
 const createFilterTemplate = () => {
-	return `<section class="main__filter filter container">
+    return `<section class="main__filter filter container">
       <input
         type="radio"
         id="filter__all"
@@ -100,7 +100,7 @@ const createFilterTemplate = () => {
 };
 
 const createBoardTemplate = () => {
-	return `<section class="board container">
+    return `<section class="board container">
       <div class="board__filter-list">
         <a href="#" class="board__filter">SORT BY DEFAULT</a>
         <a href="#" class="board__filter">SORT BY DATE up</a>
@@ -111,7 +111,7 @@ const createBoardTemplate = () => {
 };
 
 const createTaskTemplate = () => {
-	return `<article class="card card--black">
+    return `<article class="card card--black">
       <div class="card__form">
         <div class="card__inner">
           <div class="card__control">
@@ -152,7 +152,7 @@ const createTaskTemplate = () => {
 };
 
 const createTaskEditTemplate = () => {
-	return `<article class="card card--edit card--yellow card--repeat">
+    return `<article class="card card--edit card--yellow card--repeat">
       <form class="card__form" method="get">
         <div class="card__inner">
           <div class="card__color-bar">
@@ -346,7 +346,7 @@ const createTaskEditTemplate = () => {
 };
 
 const createLoadMoreButtonTemplate = () => {
-	return `<button class="load-more" type="button">load more</button>`;
+    return `<button class="load-more" type="button">load more</button>`;
 };
 
 // Main Control Elements
@@ -364,7 +364,7 @@ render(taskListElement, createTaskEditTemplate(), `beforeend`);
 // Tasks
 const TASK_COUNT = 3;
 for (let i = 0; i < TASK_COUNT; i++) {
-	render(taskListElement, createTaskTemplate(), `beforeend`);
+    render(taskListElement, createTaskTemplate(), `beforeend`);
 }
 
 // Other Elements
