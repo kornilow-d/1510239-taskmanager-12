@@ -23,6 +23,7 @@ export const render = (container, element, place) => {
 export const createElement = (template) => {
   const newElement = document.createElement(`div`);
   newElement.innerHTML = template;
+  console.log(newElement.childNodes);
   return newElement.firstChild;
 };
 

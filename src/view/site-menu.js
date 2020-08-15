@@ -1,26 +1,5 @@
 import {createElement} from '../utils';
 
-export default class SiteMenu {
-  constructor() {
-    this._element = null;
-  }
-
-  _getTemplate() {
-    return createSiteMenuTemplate();
-  }
-
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this._getTemplate());
-    }
-    return this._element;
-  }
-
-  removeElement() {
-    this._element = null;
-  }
-}
-
 const createSiteMenuTemplate = () => {
   return `<section class="control__btn-wrap">
     <input
@@ -52,4 +31,25 @@ const createSiteMenuTemplate = () => {
       STATISTICS
     </label>
   </section>`;
-};
+}
+
+export default class SiteMenu {
+  constructor() {
+    this._element = null;
+  }
+
+  _getTemplate() {
+    return createSiteMenuTemplate();
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this._getTemplate());
+    }
+    return this._element;
+  }
+
+  removeElement() {
+    this._element = null;
+  }
+}
