@@ -68,7 +68,8 @@ if (tasks.every((task) => task.isArchive)) {
   const taskListComponent = new TaskListView();
   render(boardComponent.getElement(), taskListComponent.getElement(), RenderPosition.BEFOREEND);
 
-  for (let i = 0; i < Math.min(tasks.length, TASK_COUNT_PER_STEP); i++) {
+  const minLengthTasks = Math.min(tasks.length, TASK_COUNT_PER_STEP);
+  for (let i = 0; i < minLengthTasks; i++) {
     renderTask(taskListComponent.getElement(), tasks[i]);
   }
 
