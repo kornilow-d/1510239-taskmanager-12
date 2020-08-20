@@ -54,44 +54,47 @@ const renderTask = (taskListElement, task) => {
   render(taskListElement, taskComponent.getElement(), RenderPosition.BEFOREEND);
 };
 
-render(siteHeaderElement, new SiteMenuView().getElement(), RenderPosition.BEFOREEND);
-render(siteMainElement, new FilterView(filters).getElement(), RenderPosition.BEFOREEND);
-
-const boardComponent = new BoardView();
-render(siteMainElement, boardComponent.getElement(), RenderPosition.BEFOREEND);
-
-if (tasks.every((task) => task.isArchive)) {
-  render(boardComponent.getElement(), new NoTaskView().getElement(), RenderPosition.BEFOREEND);
-} else {
-  render(boardComponent.getElement(), new SortView().getElement(), RenderPosition.BEFOREEND);
-
+const renderBoard = (boardContainer, boardTasks) => {
+  const boardComponent = new BoardView();
   const taskListComponent = new TaskListView();
+
+  render(boardContainer, boardComponent.getElement(), RenderPosition.BEFOREEND);
   render(boardComponent.getElement(), taskListComponent.getElement(), RenderPosition.BEFOREEND);
 
-  const minLengthTasks = Math.min(tasks.length, TASK_COUNT_PER_STEP);
-  for (let i = 0; i < minLengthTasks; i++) {
-    renderTask(taskListComponent.getElement(), tasks[i]);
+  if (boardTasks.every((task) => task.isArchive)) {
+    render(boardComponent.getElement(), new NoTaskView().getElement(), RenderPosition.AFTERBEGIN);
+    return;
   }
 
-  if (tasks.length > TASK_COUNT_PER_STEP) {
+  render(boardComponent.getElement(), new SortView().getElement(), RenderPosition.AFTERBEGIN);
+
+  boardTasks
+    .slice(0, Math.min(tasks.length, TASK_COUNT_PER_STEP))
+    .forEach((boardTask) => renderTask(taskListComponent.getElement(), boardTask));
+
+  if (boardTasks.length > TASK_COUNT_PER_STEP) {
     let renderedTaskCount = TASK_COUNT_PER_STEP;
 
     const loadMoreButtonComponent = new LoadMoreButtonView();
-
     render(boardComponent.getElement(), loadMoreButtonComponent.getElement(), RenderPosition.BEFOREEND);
 
     loadMoreButtonComponent.getElement().addEventListener(`click`, (evt) => {
       evt.preventDefault();
-      tasks
+      boardTasks
         .slice(renderedTaskCount, renderedTaskCount + TASK_COUNT_PER_STEP)
-        .forEach((task) => renderTask(taskListComponent.getElement(), task));
+        .forEach((boardTask) => renderTask(taskListComponent.getElement(), boardTask));
 
       renderedTaskCount += TASK_COUNT_PER_STEP;
 
-      if (renderedTaskCount >= tasks.length) {
+      if (renderedTaskCount >= boardTasks.length) {
         loadMoreButtonComponent.getElement().remove();
         loadMoreButtonComponent.removeElement();
       }
     });
   }
-}
+};
+
+render(siteHeaderElement, new SiteMenuView().getElement(), RenderPosition.BEFOREEND);
+render(siteMainElement, new FilterView(filters).getElement(), RenderPosition.BEFOREEND);
+
+renderBoard(siteMainElement, tasks);
