@@ -1,4 +1,4 @@
-import {createElement} from "../utils.js";
+import {createElement} from "../utils/render.js";
 
 export default class Abstract {
   constructor() {
@@ -6,6 +6,7 @@ export default class Abstract {
       throw new Error(`Can't instantiate Abstract, only concrete one.`);
     }
     this._element = null;
+    this._callback = {};
   }
 
   getTemplate() {
@@ -16,7 +17,6 @@ export default class Abstract {
     if (!this._element) {
       this._element = createElement(this.getTemplate());
     }
-
     return this._element;
   }
 
