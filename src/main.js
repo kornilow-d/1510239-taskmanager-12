@@ -5,7 +5,7 @@ import {generateTask} from "./mock/task.js";
 import {generateFilter} from "./mock/filter.js";
 import {render, RenderPosition} from "./utils/render.js";
 
-import BoardPresenter from "./presenter/board.js"
+import BoardPresenter from "./presenter/board.js";
 
 const TASK_COUNT = 22;
 
