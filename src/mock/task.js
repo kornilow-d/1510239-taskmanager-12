@@ -1,5 +1,5 @@
 import {COLORS} from "../const.js";
-import {getRandomInteger} from "../utils.js";
+import {getRandomInteger} from "../utils/common.js";
 
 const generateDescription = () => {
   const descriptions = [
@@ -9,6 +9,7 @@ const generateDescription = () => {
   ];
 
   const randomIndex = getRandomInteger(0, descriptions.length - 1);
+
   return descriptions[randomIndex];
 };
 
@@ -22,9 +23,9 @@ const generateDate = () => {
   const maxDaysGap = 7;
   const daysGap = getRandomInteger(-maxDaysGap, maxDaysGap);
   const currentDate = new Date();
-
   currentDate.setHours(23, 59, 59, 999);
   currentDate.setDate(currentDate.getDate() + daysGap);
+
   return new Date(currentDate);
 };
 
@@ -42,6 +43,7 @@ const generateRepeating = () => {
 
 const getRandomColor = () => {
   const randomIndex = getRandomInteger(0, COLORS.length - 1);
+
   return COLORS[randomIndex];
 };
 
