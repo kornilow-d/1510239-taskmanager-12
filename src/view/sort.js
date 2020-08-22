@@ -23,7 +23,6 @@ export default class Sort extends AbstractView {
     if (evt.target.tagName !== `A`) {
       return;
     }
-
     evt.preventDefault();
     this._callback.sortTypeChange(evt.target.dataset.sortType);
   }
